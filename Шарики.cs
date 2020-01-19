@@ -4,122 +4,335 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Фоновая_33
+namespace Шарики
 {
     class Program
     {
-        static int[][] InputArray(int n)
+        // Генерация икса для шарика
+        static int randomX()
         {
-            int[][] massiv;
-            massiv = new int[n][];
-            string[] data;
-            for (int i = 0; i < massiv.Length; i++)
-            {
-                Console.Write("Введите элементы {0} строки: ", i);
-                data = Console.ReadLine().Split(' ');
-                massiv[i] = new int[data.Length];
-                for (int j = 0; j < massiv[i].Length; j++)
-                {
-                    massiv[i][j] = int.Parse(data[j]);
-                }
-            }
-            return massiv;
+            var rand = new Random();
+            return rand.Next(9);
         }
 
-        static void PrintArray(int[][] massiv)
+        // Генерация игрека для шарика
+        static int randomY()
         {
-            foreach (int[] x in massiv)
+            var rand = new Random();
+            return rand.Next(9);
+        }
+
+        // Отвечает за генерацию значения шарика в массиве + генерация цвета
+        static int randomColor(/*out int index*/)
+        {
+            /*ConsoleColor[] colors = new ConsoleColor[] 
+            {ConsoleColor.Red, ConsoleColor.Blue, ConsoleColor.Green,
+                ConsoleColor.Yellow, ConsoleColor.Cyan, ConsoleColor.White,
+                ConsoleColor.Magenta};*/
+            var rand = new Random();
+            int random_numb = rand.Next(6);
+            int index = random_numb + 1;
+            return index;
+        }
+
+        // Ввод количества шариков на поле (с ограничением в 81 шарик)
+        static int enterCountOfBalls()
+        {
+            int n;
+            do
             {
-                foreach (int elem in x) Console.Write("{0} ", elem);
+                Console.Write("Введите количество шариков на поле: ");
+                n = int.Parse(Console.ReadLine());
+            }
+            while (n > 81);
+            return n;
+        }
+
+        // Pretty print :)
+        static void MyPrint(int[,] array)
+        {
+            int elem;
+            ConsoleColor[] colors = new ConsoleColor[]
+            {ConsoleColor.Red, ConsoleColor.Blue, ConsoleColor.Green,
+                ConsoleColor.Yellow, ConsoleColor.Cyan, ConsoleColor.DarkBlue,
+                ConsoleColor.Magenta};
+            bool black = true;
+            string c = char.ConvertFromUtf32(9679);
+            Console.Write("  ");
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                Console.Write("{0} ", i);
+            }
+            Console.WriteLine();
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Write("{0} ", i);
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (black)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        black = false;
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        black = true;
+                    }
+                    elem = array[i, j];
+                    if (elem != 0)
+                    {
+                        Console.ForegroundColor = colors[elem - 1];
+                        Console.Write("{0} ", c);
+                    }
+                    else Console.Write("  ");
+                }
                 Console.WriteLine();
             }
         }
 
-        static int MaxIndexOfLength(int[][] massiv)
+        // Можно ли сходить в клетку? (без проверки маршрута)
+        static bool Move(int x1, int y1, int x2, int y2, int[,] array)
         {
-            int max = 0;
-            foreach (int[] array in massiv)
+            if (x1 > 9 || x2 > 9 || y1 > 9 || y2 > 9) return false;
+            if (array[x1, y1] != 0 && array[x2, y2] == 0)
             {
-                if (array.Length > max) max = array.Length;
+                array[x2, y2] = array[x1, y1];
+                array[x1, y1] = 0;
+                return true;
             }
-            return max;
+
+            return false;
         }
 
-        static int[] Statistics(int[][] massiv)
+        // Генерирование рандомных значений в массив (с проверкой повтора)
+        static void randomBalls(int n, int[, ] array)
         {
-            int[] mas = new int[MaxIndexOfLength(massiv)];
-            int el, ind = 0;
-            for (int j = 0; j < MaxIndexOfLength(massiv); j++)
+            int x, y;
+            for (int i = 0; i < n; i++)
             {
-                el = 0;
-                for (int i = 0; i < massiv.Length; i++)
+                do
                 {
-                    if (massiv[i].Length >= j + 1)
+                    x = randomX();
+                    y = randomY();
+                }
+                while (array[x, y] != 0);
+                array[x, y] = randomColor();
+            }
+        }
+
+        // Игровой процесс
+        static void Game(int[,] array)
+        {
+            string command;
+            string[] move_command;
+            int x1, y1, x2, y2;
+            int total = 0;
+            bool flag;
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                command = Console.ReadLine();
+                if (command == "exit") break;
+                move_command = command.Split(' ');
+                x1 = int.Parse(move_command[1]);
+                y1 = int.Parse(move_command[2]);
+                x2 = int.Parse(move_command[3]);
+                y2 = int.Parse(move_command[4]);
+                Console.Clear();
+                if (Move(x1, y1, x2, y2, array))
+                {
+                    Console.WriteLine("Успешно!");
+                    flag = true;
+                }
+                else {
+                    Console.WriteLine("Ход невозможен!");
+                    flag = false;
+                }
+                
+                MyPrint(array);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                if (flag)
+                {
+                    total += horizontalCheck(array);
+                    total += verticalCheck(array);
+                    total += diagonalCheck(array);
+                    Console.WriteLine();
+                    Console.WriteLine("Поле после проверки:");
+                    randomBalls(3, array);
+                    MyPrint(array);
+                }
+                //if (flag) randomBalls(3, array);
+                //MyPrint(array);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("Счет: {0}", total);
+               
+            }
+        }
+
+        // Проверки!
+        static int horizontalCheck(int[,] array)
+        {
+            int count;
+            int total_count = 0;
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                count = 1;
+                for (int j = 0; j < array.GetLength(1) - 1; j++)
+                {
+                    if ((array[i, j] == array[i, j + 1]) && array[i, j] != 0)
                     {
-                        if (massiv[i][j] % 2 == 0 && el == 0) el = massiv[i][j];
+                        count++;
+                        if (j == 7 && count >= 3)
+                        {
+                            array[i, 8] = 0;
+                            for (int z = j; z > j - count + 1; z--)
+                            {
+                                array[i, z] = 0;
+                            }
+                            count = 1;
+                        }
+                    }
+                    else if (count >= 3)
+                    {
+                        total_count += count;
+                        for (int z = j; z > j - count; z--)
+                        {
+                            array[i, z] = 0;
+                        }
+                        count = 1;
+                    }
+                    else count = 1; 
+                }
+            }
+            return total_count;
+        }
+
+        static int verticalCheck(int[,] array)
+        {
+            int count;
+            int total_count = 0; 
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                count = 1;
+                for (int i = 0; i < array.GetLength(0) - 1; i++)
+                {
+                    if ((array[i, j] == array[i + 1, j]) && array[i, j] != 0)
+                    {
+                        count++;
+                        if (i == 7 && count >= 3)
+                        {
+                            total_count += count;
+                            array[8, j] = 0;
+                            for (int z = i; z > i - count + 1; z--)
+                            {
+                                array[z, j] = 0;
+                            }
+                            count = 1;
+                        }
+                    }
+                    else if (count >= 3)
+                    {
+                        total_count += count;
+                        for (int z = i; z > i - count; z--)
+                        {
+                            array[z, j] = 0;
+                        }
+                        count = 1;
+                    }
+                    else count = 1;
+                }
+            }
+            return total_count;
+        }
+
+        static int diagonalCheck(int[,] array)
+        {
+            int total_count = 0;
+
+            //     *
+            //   *
+            // * <- идем из этого шарика
+            for (int i = 2; i < 9; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    if (array[i, j] == array[i - 1, j + 1] && array[i, j] == array[i - 2, j + 2] && array[i, j] != 0)
+                    {
+                        array[i, j] = 0;
+                        array[i - 1, j + 1] = 0;
+                        array[i - 2, j + 2] = 0;
+                        total_count += 3;
                     }
                 }
-                mas[ind] = el;
-                ind++;
             }
-            return mas;
-        }
 
-        static void MyShift(int[][] massiv, int k)
-        {
-            int temp = massiv[k][massiv[k].Length - 1];
-            for (int i = massiv[k].Length - 1; i > 0; i--)
+            // * <- идем из этого шарика
+            //   *
+            //     * 
+            for (int i = 0; i < 7; i++)
             {
-                massiv[k][i] = massiv[k][i - 1];
-            }
-            massiv[k][0] = temp;
-        }
-
-        static void MyDelete(ref int[][] massiv)
-        {
-            int count, count_of_zeros = 0;
-            for (int i = 0; i < massiv.Length; i++)
-            {
-                count = 0;
-                foreach (int x in massiv[i]) if (x == 0) count++;
-                if (count > massiv[i].Length / 2) count_of_zeros++;
-            }
-            int[][] arr = new int[massiv.Length - count_of_zeros][];
-            int b = 0;
-            for (int i = 0; i < massiv.Length; i++)
-            {
-                count = 0;
-                foreach (int x in massiv[i]) if (x == 0) count++;
-                if (count <= massiv[i].Length / 2)
+                for (int j = 0; j < 7; j++)
                 {
-                    arr[b] = new int[massiv[i].Length];
-                    arr[b] = massiv[i];
-                    b++;
+                    if (array[i, j] == array[i + 1, j + 1] && array[i, j] == array[i + 2, j + 2] && array[i, j] != 0)
+                    {
+                        array[i, j] = 0;
+                        array[i + 1, j + 1] = 0;
+                        array[i + 2, j + 2] = 0;
+                        total_count += 3;
+                    }
                 }
             }
-            massiv = arr;
+
+            // *
+            //   *
+            //     * <- идем из этого шарика
+            for (int i = 2; i < 9; i++)
+            {
+                for (int j = 2; j < 9; j++)
+                {
+                    if (array[i, j] == array[i - 1, j - 1] && array[i, j] == array[i - 2, j - 2] && array[i, j] != 0)
+                    {
+                        array[i, j] = 0;
+                        array[i - 1, j - 1] = 0;
+                        array[i - 2, j - 2] = 0;
+                        total_count += 3;
+                    }
+                }
+            }
+
+            //     * <- идем из этого шарика
+            //   *
+            // * 
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 2; j < 9; j++)
+                {
+                    if (array[i, j] == array[i + 1, j - 1] && array[i, j] == array[i + 2, j - 2] && array[i, j] != 0)
+                    {
+                        array[i, j] = 0;
+                        array[i + 1, j - 1] = 0;
+                        array[i + 2, j - 2] = 0;
+                        total_count += 3;
+                    }
+                }
+            }
+            return total_count;
         }
         static void Main(string[] args)
-        {
-            int[][] array;
-            Console.Write("Введите количество строк: ");
-            int n = int.Parse(Console.ReadLine());
-            array = new int[n][];
-            array = InputArray(n);
-            Console.WriteLine("Вывод массива: ");
-            PrintArray(array);
-            int[] mas = Statistics(array);
-            Console.Write("Четные элементы столбцов: ");
-            foreach (int x in mas) Console.Write("{0} ", x);
-            MyDelete(ref array);
-            Console.WriteLine("\nУплотнили массив: ");
-            PrintArray(array);
-            Console.Write("Какую строку сдвигать? (нумерация с нуля) ");
-            int k = int.Parse(Console.ReadLine());
-            Console.Write("\nСколько раз сдвинуть строку? ");
-            int count = int.Parse(Console.ReadLine());
-            for (int i = 0; i < count % array[k].Length; i++) MyShift(array, k);
-            PrintArray(array);
+        { 
+            int n;
+            int[,] field = new int[9, 9];
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.WriteLine("Привет! Команды:\nexit - покинуть игру\n" +
+                "move x1 y1 x2 y2 - переместить шарик с координаты (x1;y1) на (x2;y2)\n" +
+                "Примечание: иксы идут сверху вниз, игреки - слева направо");
+            n = enterCountOfBalls();
+            randomBalls(n, field);
+            MyPrint(field);
+            Game(field);
         }
     }
 }
