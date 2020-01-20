@@ -23,12 +23,8 @@ namespace Шарики
         }
 
         // Отвечает за генерацию значения шарика в массиве + генерация цвета
-        static int randomColor(/*out int index*/)
+        static int randomColor()
         {
-            /*ConsoleColor[] colors = new ConsoleColor[] 
-            {ConsoleColor.Red, ConsoleColor.Blue, ConsoleColor.Green,
-                ConsoleColor.Yellow, ConsoleColor.Cyan, ConsoleColor.White,
-                ConsoleColor.Magenta};*/
             var rand = new Random();
             int random_numb = rand.Next(6);
             int index = random_numb + 1;
@@ -54,7 +50,7 @@ namespace Шарики
             int elem;
             ConsoleColor[] colors = new ConsoleColor[]
             {ConsoleColor.Red, ConsoleColor.Blue, ConsoleColor.Green,
-                ConsoleColor.Yellow, ConsoleColor.Cyan, ConsoleColor.DarkBlue,
+                ConsoleColor.Yellow, ConsoleColor.DarkMagenta, ConsoleColor.DarkBlue,
                 ConsoleColor.Magenta};
             bool black = true;
             string c = char.ConvertFromUtf32(9679);
@@ -96,11 +92,11 @@ namespace Шарики
         // Можно ли сходить в клетку? (без проверки маршрута)
         static bool Move(int x1, int y1, int x2, int y2, int[,] array)
         {
-            if (x1 > 9 || x2 > 9 || y1 > 9 || y2 > 9) return false;
-            if (array[x1, y1] != 0 && array[x2, y2] == 0)
+            if (x1 >= 9 || x2 >= 9 || y1 >= 9 || y2 >= 9) return false;
+            if (array[y1, x1] != 0 && array[y2, x2] == 0)
             {
-                array[x2, y2] = array[x1, y1];
-                array[x1, y1] = 0;
+                array[y2, x2] = array[y1, x1];
+                array[y1, x1] = 0;
                 return true;
             }
 
@@ -321,6 +317,7 @@ namespace Шарики
             }
             return total_count;
         }
+
         static void Main(string[] args)
         { 
             int n;
@@ -328,7 +325,7 @@ namespace Шарики
             Console.OutputEncoding = Encoding.Unicode;
             Console.WriteLine("Привет! Команды:\nexit - покинуть игру\n" +
                 "move x1 y1 x2 y2 - переместить шарик с координаты (x1;y1) на (x2;y2)\n" +
-                "Примечание: иксы идут сверху вниз, игреки - слева направо");
+                "Примечание: иксы - столбцы, игреки - строчки");
             n = enterCountOfBalls();
             randomBalls(n, field);
             MyPrint(field);

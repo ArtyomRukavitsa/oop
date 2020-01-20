@@ -1,0 +1,7 @@
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Шарики\Шарики\bin\Debug\Шарики.exe.config
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Шарики\Шарики\bin\Debug\Шарики.exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Шарики\Шарики\bin\Debug\Шарики.pdb
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Шарики\Шарики\obj\Debug\Шарики.csprojAssemblyReference.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Шарики\Шарики\obj\Debug\Шарики.csproj.CoreCompileInputs.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Шарики\Шарики\obj\Debug\Шарики.exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Шарики\Шарики\obj\Debug\Шарики.pdb
