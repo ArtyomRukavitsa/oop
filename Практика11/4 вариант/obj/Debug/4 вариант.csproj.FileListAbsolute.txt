@@ -1,0 +1,7 @@
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика11\4 вариант\bin\Debug\4 вариант.exe.config
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика11\4 вариант\bin\Debug\4 вариант.exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика11\4 вариант\bin\Debug\4 вариант.pdb
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика11\4 вариант\obj\Debug\4 вариант.csprojAssemblyReference.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика11\4 вариант\obj\Debug\4 вариант.csproj.CoreCompileInputs.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика11\4 вариант\obj\Debug\4 вариант.exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика11\4 вариант\obj\Debug\4 вариант.pdb
