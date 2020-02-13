@@ -5,3 +5,10 @@ C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Класс P
 C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Класс Point3D\Класс Point3D\bin\Debug\Класс Point3D.pdb
 C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Класс Point3D\Класс Point3D\obj\Debug\Класс Point3D.exe
 C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Класс Point3D\Класс Point3D\obj\Debug\Класс Point3D.pdb
+C:\Users\AcerUser\Desktop\Артем\9 класс\oop\Класс Point3D\Класс Point3D\bin\Debug\Класс Point3D.exe.config
+C:\Users\AcerUser\Desktop\Артем\9 класс\oop\Класс Point3D\Класс Point3D\bin\Debug\Класс Point3D.exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\oop\Класс Point3D\Класс Point3D\bin\Debug\Класс Point3D.pdb
+C:\Users\AcerUser\Desktop\Артем\9 класс\oop\Класс Point3D\Класс Point3D\obj\Debug\Класс Point3D.csprojAssemblyReference.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\oop\Класс Point3D\Класс Point3D\obj\Debug\Класс Point3D.csproj.CoreCompileInputs.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\oop\Класс Point3D\Класс Point3D\obj\Debug\Класс Point3D.exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\oop\Класс Point3D\Класс Point3D\obj\Debug\Класс Point3D.pdb

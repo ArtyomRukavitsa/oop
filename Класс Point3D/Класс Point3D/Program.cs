@@ -12,36 +12,43 @@ namespace Класс_Point3D
         private int y;
         private int z;
 
-        public Point3D()
+        public Point3D() { } // конструктор по умолчанию
+
+        public Point3D(int x, int y, int z) // конструктор по значениям
         {
-            x = 0;
-            y = 0;
-            z = 0;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
-        public Point3D(int x_coord, int y_coord, int z_coord)
-        {
-            this.x = x_coord;
-            this.y = y_coord;
-            this.z = z_coord;
-        }
-
-        public void Move(char direction, int value)
+        public void Move(char direction, int value) // сдвиг 
         {
             if (direction == 'x') this.x += value;
             else if (direction == 'y') this.y += value;
             else this.z += value;
         }
 
-        public void MyPrint()
+        public void MyPrint() // вывод координат
         {
             Console.WriteLine("Координаты точки: ({0}, {1}, {2})", this.x, this.y, this.z);
+        }
+
+        public double RadiusVector() // радиус-вектор 
+        {
+            return Math.Sqrt(x * x + y * y + z * z);
+        }
+
+        public void Sum(Point3D obj) // суммирование
+        {
+            this.x += obj.x;
+            this.y += obj.y;
+            this.z += obj.z;
         }
 
     }
     class Program
     {
-        static void Main(string[] args)
+        static Point3D NewPoint()
         {
             Point3D point;
             Console.Write("Если хотите использовать конструктор по умолчанию, введите 1, иначе любую цифру: ");
@@ -57,12 +64,19 @@ namespace Класс_Point3D
                 int z = int.Parse(Console.ReadLine());
                 point = new Point3D(x, y, z);
             }
+            return point;
+        }
+        static void Main(string[] args)
+        {
+            Point3D point1 = NewPoint();
+            Point3D point2 = NewPoint();
 
+            int command;
             char direction; // Направление для сдвига точки
             int value; // На сколько сдвигать точку
             while (true)
             {
-                Console.Write("Введите 1 для сдвига точки, введите 2 для вывода координат точки, иначе введите любую цифру для выхода: ");
+                Console.Write("Введите:\n1 - для сдвига точки\n2 - для вывода координат точки\n3 - для выхода\n4 - для получения радиус-вектора\nлюбое число - для суммирования полей 1ой точки: ");
                 command = int.Parse(Console.ReadLine());
                 if (command == 1)
                 {
@@ -70,13 +84,22 @@ namespace Класс_Point3D
                     direction = char.Parse(Console.ReadLine());
                     Console.Write("На сколько сдвигать точку? ");
                     value = int.Parse(Console.ReadLine());
-                    point.Move(direction, value);
+                    point1.Move(direction, value);
                 }
                 else if (command == 2)
                 {
-                    point.MyPrint();
+                    point1.MyPrint();
                 }
-                else break;
+                else if (command == 3) break;
+                else if (command == 4)
+                {
+                    Console.WriteLine("Радиус-вектор 1ой точки равен: {0}", point1.RadiusVector());
+                }
+                else
+                {
+                    point1.Sum(point2);
+                    point1.MyPrint();
+                }
             }
         }
     }
