@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +12,12 @@ namespace Класс_Point3D
         private int y;
         private int z;
 
-        public Point3D() {  } // конструктор по умолчанию
+        public Point3D() // конструктор по умолчанию
+        {
+            x = y = z = 5;
+        } 
 
-        public Point3D(int x, int y, int z) // конструктор по значениям
+        public Point3D(int x, int y, int z) // конструктор cо значениями
         {
             this.x = x;
             this.y = y;
@@ -22,12 +25,12 @@ namespace Класс_Point3D
 
         }
 
-       /* public void Move(char direction, int value) // сдвиг 
-        {
-            if (direction == 'x') this.x += value;
-            else if (direction == 'y') this.y += value;
-            else this.z += value;
-        }*/
+        /* public void Move(char direction, int value) // сдвиг 
+         {
+             if (direction == 'x') this.x += value;
+             else if (direction == 'y') this.y += value;
+             else this.z += value;
+         }*/
 
         public void MyPrint() // вывод координат
         {
@@ -39,7 +42,7 @@ namespace Класс_Point3D
             get { return Math.Sqrt(x * x + y * y + z * z); }
         }
 
-        public int X 
+        public int X
         {
             get { return x; }
             set
@@ -53,7 +56,7 @@ namespace Класс_Point3D
                 {
                     Console.WriteLine("Ошибка: " + err.Message);
                 }
-                
+
             }
         }
 
@@ -64,11 +67,13 @@ namespace Класс_Point3D
             {
                 try
                 {
-                    if (value < 0) {
+                    if (value < 0)
+                    {
                         y = 100;
                         throw new Exception("Ваше число меньше нуля, недопустимое значение! Ставлю значение 100");
                     }
-                    else if (value > 100) {
+                    else if (value > 100)
+                    {
                         y = 100;
                         throw new Exception("Ваше число больше ста, недопустимое значение! Ставлю значение 100");
                     }
@@ -127,11 +132,8 @@ namespace Класс_Point3D
                 z *= value;
             }
         }
-
-    }
-    class Program
-    {
-        static Point3D NewPoint()
+        
+        public static Point3D NewPoint() // статический метод создания точки
         {
             Point3D point;
             Console.Write("Если хотите использовать конструктор по умолчанию, введите 1, иначе любую цифру: ");
@@ -153,15 +155,19 @@ namespace Класс_Point3D
                 catch (Exception err)
                 {
                     Console.WriteLine("Ошибка: " + err.Message);
-                    point = new Point3D(5, 5, 5);
+                    point = new Point3D();
                 }
-                
+
             }
             return point;
         }
+
+    }
+    class Program
+    {
         static void Main(string[] args)
         {
-            Point3D point1 = NewPoint();
+            Point3D point1 = Point3D.NewPoint();
             Point3D point2 = new Point3D(5, 5, 5);
 
             int command; //Число команды
@@ -180,7 +186,7 @@ namespace Класс_Point3D
                     "\n6 - для суммирования полей 1ой точки через числа" +
                     "\n7 - для увеличения полей 1ой точки на коэффициент" +
                     "\n8 - для увеличения полей на определенное число:" +
-                    "\n9 - для очистки консоли: "  
+                    "\n9 - для очистки консоли: "
                 );
                 str = Console.ReadLine();
                 while (!Int32.TryParse(str, out command))
@@ -228,7 +234,7 @@ namespace Класс_Point3D
                     point1.MyPrint();
                 }
                 else if (command == 9) Console.Clear();
-                
+
             }
         }
     }
