@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Практика6
+{
+    class Program
+    {
+        static int Condition(int n)
+        {
+            int count = 0;
+            while (n > 0)
+            {
+                int a = n % 10;
+                if (a < 8 && a % 3 != 0 && a % 4 != 0) count++;
+                n /= 10;
+            }
+            return count;
+        }
+
+        static int Parity(int n)
+        {
+            int first = n % 10;
+            int sum = 0;
+            n /= 10;
+            while (n > 0)
+            {
+                int second = n % 10;
+                int min_sum = first + second;
+                if (min_sum % 2 == 0) sum += min_sum;
+                n /= 10;
+                first = second;
+            }
+            return sum;
+        }
+
+        static int Happy(int n)
+        {
+            int a = n;
+            int count = 0;
+            int sum_first = 0, sum_second = 0, q = 0;
+            while (a > 0) { count++; a /= 10; }
+            for (int i = 1; i <= count / 2 + count % 2; i++)
+            {
+                q = n % 10;
+                sum_second += q;
+                n /= 10;
+            }
+            if (count % 2 != 0) sum_first += q;
+            for (int i = 1; i <= count / 2; i++)
+            {
+                sum_first += n % 10;
+                n /= 10;
+            }
+            if (sum_first == sum_second) return 1;
+            else return 0;
+        }
+
+        static int Perfect(int n)
+        {
+            int sum = 1;
+            for (int i = 2; i < Math.Sqrt(n); i++)
+            {
+                if (n % i == 0) sum = sum + i + n / i;
+            }
+            if (sum == n) return 1;
+            else return 0;
+        }
+
+        static int Addition(int n)
+        {
+            int a = n;
+            int count = 0, sum_otr = 0, sum_polozh = 0;
+            bool flag;
+            while (a > 0) { count++; a /= 10; }
+
+            if (count % 2 == 0) flag = false;
+            else flag = true;
+
+            while (n > 0)
+            {
+                if (flag == true) { sum_polozh += n % 10; flag = false; }
+                else { sum_otr -= n % 10; flag = true; }
+                n /= 10;
+            }
+            return sum_otr + sum_polozh;
+        }
+
+
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            int first = Condition(n);
+            if (first == 0) Console.WriteLine("No");
+            else Console.WriteLine(first);
+
+            Console.WriteLine(Parity(n));
+
+            if (Happy(n) == 1) Console.WriteLine("Счастливое");
+            else Console.WriteLine("Несчастливое");
+
+            int n1 = int.Parse(Console.ReadLine());
+            for (int i = 2; i < n1; i++)
+            {
+                if (Perfect(i) != 0) Console.WriteLine(i);
+            }
+
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine(Addition(n));
+
+        }
+
+
+
+
+    }
+}

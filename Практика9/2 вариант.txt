@@ -1,0 +1,66 @@
+﻿using System;
+using System.Diagnostics; 
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Практика9
+{
+    class Program
+    {
+        static int FibonachiRec(int m)
+        {
+            if (m == 0) return 0;
+            if (m == 1) return 1;
+            else return FibonachiRec(m - 1) + FibonachiRec(m - 2);
+        }
+
+        static int FibonachiIteration(int m)
+        {
+            int first = 1, second = 1, numb = 1;
+            for (int i = 2; i < m; i++)
+            {
+                numb = first + second;
+                first = second;
+                second = numb;
+            }
+            return numb;
+     
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("m = ");
+            int m = int.Parse(Console.ReadLine());
+            int n = 0;
+            while (FibonachiIteration(n) <= m) n++; 
+            int sum = 0;
+            n -= 1;
+            while (n > 0) { sum += FibonachiIteration(n); n--; }
+            Console.WriteLine("Сумма итерационным способом: {0}", sum);
+
+            n = 0; sum = 0;
+            while (FibonachiRec(n) <= m) n++; 
+            n -= 1;
+            while (n > 0) { sum += FibonachiRec(n); n--; }
+            Console.WriteLine("Сумма рекурсивным способом: {0}", sum);
+
+            Console.WriteLine("--------------------------");
+            Console.Write("Засекаю время! Высчитываю n-ное число Фибоначчи\nn = ");
+            n = int.Parse(Console.ReadLine());
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            FibonachiIteration(n);
+            stopWatch.Stop();
+            Console.WriteLine("Затраченное время для итерационной функции (в тиках): {0}", stopWatch.ElapsedTicks);
+            Console.WriteLine("Результат работы функции: {0}", FibonachiIteration(n));
+
+            Stopwatch stopWatch2 = new Stopwatch();
+            stopWatch2.Start();
+            FibonachiRec(n);
+            stopWatch2.Stop();
+            Console.WriteLine("Затраченное время для рекурсивной функции (в тиках): {0}", stopWatch2.ElapsedTicks);
+            Console.WriteLine("Результат работы функции: {0}", FibonachiRec(n));
+        }
+    }
+}

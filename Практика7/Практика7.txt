@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Практика7
+{
+    class Program
+    {
+        static void ManyBytesOperations(byte a, byte b)
+        {
+            Console.WriteLine("\na\tb\ta & b\ta | b\ta ^ b\t~a\t~b\ta << 2\tb >> 1");
+            Console.WriteLine($"{a}\t{b}\t{a & b}\t{a | b}\t{a ^ b}\t{~a}\t{~b}\t{a << 1}\t{b >> 2}");
+        }
+
+        static void DoubleViewByte(byte a)
+        {
+            int two = 1;
+            for (int i = 7; i >= 0; i--)
+            {
+                if ((a & (two << i)) == (two << i)) Console.Write(1);
+                else Console.Write(0);
+            }
+            Console.WriteLine();
+        }
+
+        static int OneOfDoubleViewButShort(short x, byte n)
+        {
+            int two = 1;
+            if ((x & (two << n)) == (two << n)) return 1;
+            else return 0;
+        }
+        static void Main(string[] args)
+        {
+            //byte a = byte.Parse(Console.ReadLine());
+            //byte b = byte.Parse(Console.ReadLine());
+            //ManyBytesOperations(a, b);
+            //DoubleViewByte(a);
+            short x = byte.Parse(Console.ReadLine());
+            byte n = byte.Parse(Console.ReadLine());
+            Console.WriteLine($"В {n}-ом разряде находится {OneOfDoubleViewButShort(x, n)}");
+
+        }
+    }
+}

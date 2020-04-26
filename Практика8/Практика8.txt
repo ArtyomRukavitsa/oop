@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Практика8
+{
+    class Program
+    {
+        static void Increase(ref int a, int b)
+        {
+            int count = 1; 
+            while (b > 10) { b /= 10; count*=10; }
+            a *= count;
+        }
+
+        static void Obmen(ref int a, ref int b)
+        {
+            a = a - b;
+            b = a + b;
+            a = b - a;
+        }
+
+        static void Pro(ref int a, int k)
+        {
+            int first = a / 100;
+            int second = a / 10 % 10;
+            int third = a % 10;
+            bool flag = false;
+            for (int i = first; i <= 9; i++)
+            {
+                if (flag == false) a = i * 100 + second * 10 + third;
+                if (a % k == 0 && flag == false) flag = true;
+                if ((i * 100 + second * 10 + third) % k == 0 && flag == true) a = i * 100 + second * 10 + third;
+            }
+            if (flag == true) return;
+            for (int i = second; i <= 9; i++)
+            {
+                if (flag == false) a = first * 100 + i * 10 + third;
+                if (a % k == 0 && flag == false) flag = true;
+                if ((first * 100 + i * 10 + third) % k == 0 && flag == true) a = first * 100 + i * 10 + third;
+            }
+            if (flag == true) return;
+            for (int i = 0; i <= 9; i++)
+            {
+                if (flag == false) a = first * 100 + second * 10 + i;
+                if (a % k == 0 && flag == false) flag = true;
+                if ((first * 100 + i * 10 + i) % k == 0 && flag == true) a = first * 100 + i * 10 + i;
+            }
+            if (flag == true) return;
+        }
+        static void Main(string[] args)
+        {
+            //int a = int.Parse(Console.ReadLine());
+            //int b = int.Parse(Console.ReadLine());
+            //Console.WriteLine("До увеличения {0} {1}", a, b);
+            //Increase(ref a, b);
+            //Console.WriteLine("После увеличения {0} {1}", a, b);
+            //int a = int.Parse(Console.ReadLine());
+            //int b = int.Parse(Console.ReadLine());
+            //int c = int.Parse(Console.ReadLine());
+            //Console.WriteLine("До: {0} {1} {2}", a, b, c);
+            //while (a <= b || a <= c || b <= c)
+            //{
+            //    Obmen(ref a, ref b);
+            //    if (b < c) Obmen(ref b, ref c);
+            //}
+            //Console.WriteLine("После: {0} {1} {2}", a, b, c);
+            int a = int.Parse(Console.ReadLine());
+            int k = int.Parse(Console.ReadLine());
+            Pro(ref a, k);
+            Console.WriteLine(a);
+
+        }
+    }
+}

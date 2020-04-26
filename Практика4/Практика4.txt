@@ -1,0 +1,20 @@
+static double min(double a, double b, double c)
+{
+   double minimum = a;
+   if (minimum > b) minimum = b;
+   if (minimum > c) minimum = c;
+   return minimum;
+}
+
+static double max(double a, double b)
+{
+   return a > b ? a : b;
+}
+
+static void Main(string[] args)
+{
+   int a = int.Parse(Console.ReadLine());
+   int b = int.Parse(Console.ReadLine());
+   double c = max(min(a, b, 1.0 / (a + b)), max(a + b, a * b)) + max(min(a, -b, a + b), 3) - max(5, 7 * a + b);
+   Console.WriteLine("{0:f2}", c);
+}

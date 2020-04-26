@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Практика
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.OutputEncoding = Encoding.Unicode;
+            double r = 64.100;
+            float p1 = 7.8932597F;
+            float pr = 100000000000f;
+            double f1 = 3.20000;
+            decimal dec = 18500.5m;
+            byte s1 = 4;
+            byte p = 16;
+            string s = "AMD";
+            Console.Write("Введите ваше имя: ");
+            string name = Console.ReadLine();
+            Console.Write("Введите дробное число: ");
+            float f = float.Parse(Console.ReadLine());
+            Console.WriteLine("\nПривет, {0}!", name);
+            Console.WriteLine(@"*********************************
+*       Я твой компьютер!       *
+*********************************
+У меня следующие характеристики:
+Процессор               {0} c разрядностью {1:F2}GHz
+Моя память              {2}Gb (доступно {3:p0}) 
+Жесткий диск            {4}Tb
+Тип системы             {5:G2}-разрядная ОС
+
+
+Моя производительность  {6:e0} оп/сек 
+Индекс произв-ти        {7:f0} 
+Моя стоимость           {8:C}", s, f1, p, p1 / 10, s1, r, pr, f, dec);
+
+            /*Console.WriteLine("\nПроцессор\t\t{0} c разрядностью {1:F2}GHz", s, f1);
+            Console.WriteLine("Моя память\t\t{0}Gb (доступно {1:p0}) ", p, p1 / 10);
+            Console.WriteLine("Жесткий диск\t\t{0}Tb ", s1);
+            Console.WriteLine("Тип системы\t\t{0:G2}-разрядная ОС\n\n", r);
+            Console.WriteLine("Моя производительность\t{0} оп/сек ", pr);
+            Console.WriteLine("Индекс произв-ти\t{0} ", Math.Floor(f));
+            Console.WriteLine("Моя стоимость\t\t{0:C}", dec); */
+
+        }
+    }
+}

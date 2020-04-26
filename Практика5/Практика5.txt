@@ -1,0 +1,22 @@
+static int MaxSum(int n)
+        {
+            int sum_now = 0; // Текущая сумма двух переменных
+            int sum_max = int.MinValue; // Максимальная сумма двух переменных
+            int last = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n - 1; i++)
+            {
+                int a = int.Parse(Console.ReadLine());
+                sum_now = a + last; // Текущая сумма равна сумме последнего
+                // значения и нового введеного значения
+                last = a;
+                if (sum_now > sum_max) sum_max = sum_now;
+            }
+            return sum_max;
+        }
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            int result = MaxSum(n);
+            if (result == int.MinValue) Console.WriteLine("В последовательности одно число");
+            else Console.WriteLine(result);
+        }

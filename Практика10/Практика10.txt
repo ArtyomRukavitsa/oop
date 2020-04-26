@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Практика10_Вар_5
+{
+    class Program
+    {
+        static void InsertComma(ref string s)
+        {
+            int count = 0;
+            for (int i = s.Length; i > 0; i--)
+            {
+                count++;
+                if (count % 3 == 0 && i - 1 != 0) {
+                    s = s.Insert(i - 1, ".");
+                    count = 0;
+                }
+            }
+        }
+        static void DeleteSubs(ref string s, string subs)
+        {
+            while (s.Contains(subs))
+            {
+                int pos = s.IndexOf(subs);
+                s = s.Replace(subs, "");
+            }
+        }
+
+        static void DeleteEvenOrOdd(ref string s)
+        {
+            int len = s.Length;
+            int ost = len % 2;
+            // Через формулу
+            s = s.Remove((len - 1) / 2, 2 - ost);
+            // Через if-ы
+            //if (len % 2 == 1) s = s.Remove(len / 2, 1);
+            //else s = s.Remove(len / 2 - 1, 2);
+        }
+        static void Main(string[] args)
+        {
+            string s = Console.ReadLine();
+            InsertComma(ref s);
+            Console.WriteLine(s);
+            s = Console.ReadLine();
+            string subs = Console.ReadLine();
+            DeleteSubs(ref s, subs);
+            Console.WriteLine(s);
+            s = Console.ReadLine();
+            DeleteEvenOrOdd(ref s);
+            Console.WriteLine(s);
+
+        }
+    }
+}

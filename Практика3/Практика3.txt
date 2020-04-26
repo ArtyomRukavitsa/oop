@@ -1,0 +1,57 @@
+using System;
+
+namespace Practica 
+{
+	class Program 
+	{
+		static void Main() 
+		{
+//Номер1
+Console.Write("  ");
+for (int x = 2; x <= 9; x++) 
+Console.Write("  {0:d1}", x);
+Console.WriteLine();
+for (int x = 2; x <= 9; x++)
+{
+   for (int y = 1; y <= 9; y++)
+   {
+     string str = Convert.ToString(x * y);
+     char pad = ' ';
+     Console.Write(str.PadLeft(2, pad) + " ");
+   }
+Console.WriteLine();
+}
+//Номер2
+for (int i = 1; i <= 9; i++)
+{
+    for (int j = i + 1; j <= 9; j++)
+      {
+        for (int z = j + 1; z <= 9; z++)
+            {
+               int number = i * 100 + j * 10 + z;
+               Console.WriteLine(number);
+            }
+       }
+ }
+
+//Номер 3
+
+for (int i = 1; i <= 9; i++)
+{
+ // Эти числа - с одним/двумя нулями или с одинаковыми цифрами
+Console.WriteLine(i * 100);
+Console.WriteLine(i * 100 + i);
+Console.WriteLine(i * 100 + i * 10);
+Console.WriteLine(i * 100 + i * 10 + i);
+                
+for (int j = 1; j < i; j++)
+  {
+// Эти числа с двумя одинаковыми и с третьей - любой, кроме нуля
+Console.WriteLine("{0}{0}{1}", i, j);
+Console.WriteLine("{0}{1}{0}", i, j);
+Console.WriteLine("{1}{0}{0}", i, j);
+  }
+}
+		}
+	}
+}

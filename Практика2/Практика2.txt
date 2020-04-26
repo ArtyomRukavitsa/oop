@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Практика2_1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Номер1
+            Console.WriteLine((int.Parse(Console.ReadLine()) <= 9) ? "YES" : "NO");
+            //Номер2
+            byte distance = byte.Parse(Console.ReadLine());
+            if (distance >= 30) Console.WriteLine("ПЕРЕЛЕТ");
+            else if (distance > 28) Console.WriteLine("ПОПАЛ!");
+            else if (distance > 0) Console.WriteLine("НЕДОЛЕТ");
+            else Console.WriteLine("Не бей по своим!");
+            //Номер3
+            string s = Console.ReadLine();
+            switch (s)
+            {
+                case "A": Console.WriteLine("Гласная"); break;
+                case "I": Console.WriteLine("Гласная"); break;
+                case "O": Console.WriteLine("Гласная"); break;
+                case "U": Console.WriteLine("Гласная"); break;
+                case "E": Console.WriteLine("Гласная"); break;
+                case "a": Console.WriteLine("Гласная"); break;
+                case "i": Console.WriteLine("Гласная"); break;
+                case "o": Console.WriteLine("Гласная"); break;
+                case "u": Console.WriteLine("Гласная"); break;
+                case "e": Console.WriteLine("Гласная"); break;
+                default: Console.WriteLine("Согласная"); break;
+            }
+            //Номер 4 доп
+            int a = int.Parse(Console.ReadLine());
+            int b = int.Parse(Console.ReadLine());
+            int c = int.Parse(Console.ReadLine());
+            Console.WriteLine((a == b) ? "ДА" : (b == c) ? "ДА" : (a == c) ? "ДА" : "НЕТ");
+        }
+    }
+}
