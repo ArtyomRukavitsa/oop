@@ -1,0 +1,20 @@
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\bin\Debug\Практика 15 (задание 1).exe.config
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\bin\Debug\Практика 15 (задание 1).exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\bin\Debug\Практика 15 (задание 1).pdb
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).csprojAssemblyReference.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\obj\Debug\Практика_15__задание_1_.Form1.resources
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\obj\Debug\Практика_15__задание_1_.Properties.Resources.resources
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).csproj.GenerateResource.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).csproj.CoreCompileInputs.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Задание 1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).pdb
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\bin\Debug\Практика 15 (задание 1).exe.config
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\bin\Debug\Практика 15 (задание 1).exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\bin\Debug\Практика 15 (задание 1).pdb
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).csprojAssemblyReference.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\obj\Debug\Практика_15__задание_1_.Form1.resources
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\obj\Debug\Практика_15__задание_1_.Properties.Resources.resources
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).csproj.GenerateResource.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).csproj.CoreCompileInputs.cache
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).exe
+C:\Users\AcerUser\Desktop\Артем\9 класс\!Практика\Практика15.1\Практика 15 (задание 1)\obj\Debug\Практика 15 (задание 1).pdb
